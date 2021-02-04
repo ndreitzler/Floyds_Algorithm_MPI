@@ -1,0 +1,54 @@
+#!/bin/bash
+#PBS -N Project2
+###PBS -q small
+#PBS -l select=6:ncpus=6:mpiprocs=6:mem=2gb:interconnect=1g,walltime=00:10:00
+#PBS -o output.txt
+#pbs -e error.txt
+###PBS -m abe
+###PBS -M ndreitz@clemson.edu
+
+source /etc/profile.d/modules.sh
+module purge
+module add gcc/5.4.0 openmpi/1.10.3-gcc/5.4.0-cuda9_2
+
+cd /scratch1/ndreitz/
+
+./floyd-serial graph100.bin serial.bin
+##mpiexec -n 1 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph100.bin parallel.bin
+mpiexec -n 4 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph100.bin parallel.bin
+mpiexec -n 9 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph100.bin parallel.bin
+mpiexec -n 16 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph100.bin parallel.bin
+mpiexec -n 25 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph100.bin parallel.bin
+mpiexec -n 36 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph100.bin parallel.bin
+
+./floyd-serial graph200.bin serial.bin
+##mpiexec -n 1 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph200.bin parallel.bin
+mpiexec -n 4 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph200.bin parallel.bin
+mpiexec -n 9 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph200.bin parallel.bin
+mpiexec -n 16 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph200.bin parallel.bin
+mpiexec -n 25 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph200.bin parallel.bin
+mpiexec -n 36 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph200.bin parallel.bin
+
+./floyd-serial graph400.bin serial.bin
+##mpiexec -n 1 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph400.bin parallel.bin
+mpiexec -n 4 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph400.bin parallel.bin
+mpiexec -n 9 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph400.bin parallel.bin
+mpiexec -n 16 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph400.bin parallel.bin
+mpiexec -n 25 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph400.bin parallel.bin
+mpiexec -n 36 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph400.bin parallel.bin
+
+./floyd-serial graph800.bin serial.bin
+##mpiexec -n 1 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph800.bin parallel.bin
+mpiexec -n 4 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph800.bin parallel.bin
+mpiexec -n 9 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph800.bin parallel.bin
+mpiexec -n 16 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph800.bin parallel.bin
+mpiexec -n 25 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph800.bin parallel.bin
+mpiexec -n 36 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph800.bin parallel.bin
+
+./floyd-serial graph1000.bin serial.bin
+##mpiexec -n 1 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph1000.bin parallel.bin
+mpiexec -n 4 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph1000.bin parallel.bin
+mpiexec -n 9 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph1000.bin parallel.bin
+mpiexec -n 16 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph1000.bin parallel.bin
+mpiexec -n 25 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph1000.bin parallel.bin
+mpiexec -n 36 --mca mpi_cuda_support 0 /home/ndreitz/Project_2/floyd-parallel graph1000.bin parallel.bin
